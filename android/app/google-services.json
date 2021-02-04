@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "330020850190",
+    "project_id": "mybookings-aeae0",
+    "storage_bucket": "mybookings-aeae0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:330020850190:android:c5a84d5c9eff2a172b0a5f",
+        "android_client_info": {
+          "package_name": "com.example.mybookings"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "330020850190-7dlkieh44pr514mvuhpp63uvptqe4a6v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBuLq8b3OGz7yPlN4RMUU8VFnbkAwjPN20"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "330020850190-7dlkieh44pr514mvuhpp63uvptqe4a6v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
