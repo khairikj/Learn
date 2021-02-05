@@ -10,9 +10,6 @@ import 'package:learn/services/database.dart';
 import 'package:learn/shared/loading.dart';
 import 'package:provider/provider.dart';
 
-FirebaseAuth auth = FirebaseAuth.instance;
-String uid = auth.currentUser.uid.toString();
-
 class Wrapper extends StatelessWidget {
   
   @override
