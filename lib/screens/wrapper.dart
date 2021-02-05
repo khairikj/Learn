@@ -20,10 +20,7 @@ class Wrapper extends StatelessWidget {
     final user = Provider.of<UserUid>(context);
     print(user);
     
-
     //return either Home or Authenticate
-    CollectionReference users = FirebaseFirestore.instance.collection('User');
-
     if (user == null) {
       
       return Authenticate();
