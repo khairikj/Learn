@@ -49,7 +49,7 @@ class DatabaseService {
         phoneNum: doc.data()['phoneNum'] ?? '',
         address: doc.data()['address'] ?? '',
         location: doc.data()['location'] ?? '',
-        photoURL: doc.data()['photoURL'] ?? null,
+        photoURL: doc.data()['photoURL'] ?? '',
       );
     }).toList();
   }

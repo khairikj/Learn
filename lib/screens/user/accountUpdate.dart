@@ -192,7 +192,8 @@ class _AccUpdState extends State<AccUpd> {
                                     style: TextStyle(color: Colors.white),
                                   ),
                                   onPressed: () async {
-                                    if (_formKey.currentState.validate()) {
+                                    if(userData.userType == 'Owner'){
+                                      if (_formKey.currentState.validate()) {
                                       Random i = new Random();
                                       int j = i.nextInt(10000);
                                       final ref = FirebaseStorage.instance
@@ -208,10 +209,36 @@ class _AccUpdState extends State<AccUpd> {
                                                 _phoneNum ?? userData.phoneNum,
                                                 _address ?? userData.address,
                                                 _location ?? userData.location,
-                                                value ?? userData.photoURL);
+                                                value ?? userData.photoURL,
+                                                userType: 'Owner');
                                         Navigator.pop(context);
                                       });
                                     }
+                                    }
+                                    else{
+                                      if (_formKey.currentState.validate()) {
+                                      Random i = new Random();
+                                      int j = i.nextInt(10000);
+                                      final ref = FirebaseStorage.instance
+                                          .ref()
+                                          .child('image$j');
+                                      await ref.putFile(_imageFile);
+                                      await ref
+                                          .getDownloadURL()
+                                          .then((value) async {
+                                        await DatabaseService(uid: user.uid)
+                                            .updateUserData(
+                                                _name ?? userData.name,
+                                                _phoneNum ?? userData.phoneNum,
+                                                _address ?? userData.address,
+                                                _location ?? userData.location,
+                                                value ?? userData.photoURL,
+                                                userType: 'Customer');
+                                        Navigator.pop(context);
+                                      });
+                                    }
+                                    }
+
                                   })
                             ],
                           ),

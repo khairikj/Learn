@@ -59,7 +59,7 @@ class _NavOwnerState extends State<NavOwner> {
           appBar: AppBar(
             backgroundColor: Colors.red,
             centerTitle: true,
-            title: Text('MyBooking'),
+            title: Text('MyBooking Owner'),
             leading: Container(),
           ),
           body: Center(

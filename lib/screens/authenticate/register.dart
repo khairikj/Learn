@@ -76,7 +76,7 @@ class _RegisterState extends State<Register> {
                     RadioListTile(
                       value: 1,
                       groupValue: selectedRadio,
-                      activeColor: Colors.white,
+                      activeColor: Colors.red,
                       title: Text('Owner'),
                       onChanged: (val) {
                         print('Radio $val');
@@ -86,7 +86,7 @@ class _RegisterState extends State<Register> {
                     RadioListTile(
                       value: 2,
                       groupValue: selectedRadio,
-                      activeColor: Colors.white,
+                      activeColor: Colors.red,
                       title: Text('Customer'),
                       onChanged: (val) {
                         print('Radio $val');
