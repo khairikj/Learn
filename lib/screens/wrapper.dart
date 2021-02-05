@@ -19,43 +19,39 @@ class Wrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     final user = Provider.of<UserUid>(context);
     print(user);
+    
 
     //return either Home or Authenticate
     CollectionReference users = FirebaseFirestore.instance.collection('User');
-    
-    
 
     if (user == null) {
+      
       return Authenticate();
     } else {
-      return FutureBuilder<DocumentSnapshot>(
-      future: users.doc(uid).get(),
-      builder:
-          (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
-
-        if (snapshot.hasError) {
-          return Text("Something went wrong");
+      return StreamBuilder<User>(
+      stream: FirebaseAuth.instance.authStateChanges(),
+      builder: (context, snapshot) {
+        if(snapshot.hasData && snapshot.data != null) {
+          DatabaseService();
+          return StreamBuilder<DocumentSnapshot>(
+            stream: FirebaseFirestore.instance.collection("User").doc(snapshot.data.uid).snapshots() ,
+            builder: (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot){
+              if(snapshot.hasData && snapshot.data != null) {
+                final userDoc = snapshot.data;
+                final user = userDoc.data();
+                if(user['userType'] == 'Owner') {
+                  return NavOwner();
+                }else{
+                  return NavCust();
+                }
+              }else{
+                return Loading();
+              }
+            },
+          );
         }
-
-        if (snapshot.connectionState == ConnectionState.done ) {
-          Map<String, dynamic> data = snapshot.data.data();
-          var x = data['userType'].toString();
-          if (x == 'Owner'){
-            print(uid);
-            return NavOwner();
-          }
-          if(x == 'Customer'){
-            print(uid);
-            return NavCust();
-          }
-          else {
-            print(uid);
-            uid = null;
-            return Authenticate();
-          }
-        }
-        return Loading();
-      },
+        return Authenticate();
+      }
     );
     }
 
